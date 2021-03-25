@@ -6,13 +6,21 @@ pipeline{
     }
     stages{
         stage("Build"){
-            sh "docker-compose build --parrallel"
+            steps {
+                sh "docker-compose build --parrallel"
+
+            }
+            
         }
         stage("Push"){
+            steps{
             sh "docker-compose push"
+            }
         }
         stage("Deploy"){
+            steps{
             sh "docker-compose up -d"
+            }
         }
     }
 }
